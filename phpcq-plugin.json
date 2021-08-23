@@ -1,0 +1,23 @@
+{
+  "name": "phpmd",
+  "type": "php-file",
+  "url": "src/phpmd.php",
+  "api-version": "1.0.0",
+  "requirements": {
+    "php": {
+      "php": "^7.3 || ^8.0",
+      "ext-dom": "*"
+    },
+    "tool": {
+      "phpmd": {
+        "constraints": "^2.6.1",
+        "sources": [
+          {
+            "type": "github",
+            "repository": "phpmd/phpmd"
+          }
+        ]
+      }
+    }
+  }
+}

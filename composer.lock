@@ -1,0 +1,213 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "bb0d6683fddb295f79f470983ba6e6ef",
+    "packages": [
+        {
+            "name": "phpcq/plugin-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpcq/plugin-api.git",
+                "reference": "ef7a076c064e5c35a8ccc48458ad5e620be7e615"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpcq/plugin-api/zipball/ef7a076c064e5c35a8ccc48458ad5e620be7e615",
+                "reference": "ef7a076c064e5c35a8ccc48458ad5e620be7e615",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "phpcq/runner-bootstrap": "^1.0@dev"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phpcq\\PluginApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Schiffler",
+                    "email": "c.schiffler@cyberspectrum.de",
+                    "homepage": "https://cyberspectrum.de",
+                    "role": "lead"
+                },
+                {
+                    "name": "David Molineus",
+                    "email": "david.molineus@netzmacht.de",
+                    "homepage": "https://netzmacht.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP code quality project plugin API interfaces.",
+            "support": {
+                "issues": "https://github.com/phpcq/plugin-api/issues",
+                "source": "https://github.com/phpcq/plugin-api/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/discordier",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/dmolineus",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-08-19T16:34:25+00:00"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "phpcq/runner-bootstrap",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpcq/runner-bootstrap.git",
+                "reference": "384a44045002c19253cbcaf0e22f5e41fd3cfbd6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpcq/runner-bootstrap/zipball/384a44045002c19253cbcaf0e22f5e41fd3cfbd6",
+                "reference": "384a44045002c19253cbcaf0e22f5e41fd3cfbd6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3"
+            },
+            "default-branch": true,
+            "bin": [
+                "bin/phpcq"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Schiffler",
+                    "email": "c.schiffler@cyberspectrum.de",
+                    "homepage": "http://cyberspectrum.de",
+                    "role": "lead"
+                },
+                {
+                    "name": "David Molineus",
+                    "email": "david.molineus@netzmacht.de",
+                    "homepage": "https://netzmacht.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP code quality composer plugin.",
+            "support": {
+                "issues": "https://github.com/phpcq/runner-bootstrap/issues",
+                "source": "https://github.com/phpcq/runner-bootstrap/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/discordier",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/dmolineus",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-12-03T07:18:27+00:00"
+        },
+        {
+            "name": "phpcq/schema",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpcq/schema.git",
+                "reference": "3c0ce7ec8e4399b4800b418efe9300210c253cbe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpcq/schema/zipball/3c0ce7ec8e4399b4800b418efe9300210c253cbe",
+                "reference": "3c0ce7ec8e4399b4800b418efe9300210c253cbe",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Schiffler",
+                    "email": "c.schiffler@cyberspectrum.de",
+                    "homepage": "https://cyberspectrum.de",
+                    "role": "lead"
+                },
+                {
+                    "name": "David Molineus",
+                    "email": "david.molineus@netzmacht.de",
+                    "homepage": "https://netzmacht.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "phpcq schema files",
+            "support": {
+                "issues": "https://github.com/phpcq/schema/issues",
+                "source": "https://github.com/phpcq/schema/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/discordier",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/dmolineus",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-08-17T19:02:55+00:00"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "phpcq/plugin-api": 20,
+        "phpcq/runner-bootstrap": 20,
+        "phpcq/schema": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^7.3 || ^8.0",
+        "ext-dom": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
