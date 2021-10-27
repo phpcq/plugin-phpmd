@@ -23,15 +23,12 @@ phpcq:
         phpmd:
           signed: false
     phpcpd:
-      version: ^1.0
+      version: ^1.1.1
       signed: false
     phploc:
       version: ^1.0
       signed: false
     phpcs:
-      version: ^1.0
-      signed: false
-    phpcbf:
       version: ^1.0
       signed: false
     composer-normalize:
@@ -98,6 +95,7 @@ tasks:
       standard: PSR12
 
   phpcbf:
+    plugin: phpcs
     config:
       <<: *phpcs-config
       fix: true
