@@ -51,31 +51,30 @@ phpcq:
     # phpmd
     - 0F9684B8B16B7AB0
 
-  chains:
-    fix:
-      - composer-normalize
-      - phpcbf
-    verify:
-      - composer-require-checker
-      - composer-normalize
-    analyze:
-      - phploc
-      - phpcpd
-      - phpmd
-      - phpcs
-      - psalm
-      - phpunit
-    default:
-      - composer-require-checker
-      - composer-normalize
-      - phploc
-      - phpcpd
-      - phpmd
-      - phpcs
-      - psalm
-      - phpunit
-
 tasks:
+  fix:
+    - composer-normalize
+    - phpcbf
+  verify:
+    - composer-require-checker
+    - composer-normalize
+  analyze:
+    - phploc
+    - phpcpd
+    - phpmd
+    - phpcs
+    - psalm
+    - phpunit
+  default:
+    - composer-require-checker
+    - composer-normalize
+    - phploc
+    - phpcpd
+    - phpmd
+    - phpcs
+    - psalm
+    - phpunit
+
   phpmd:
     config:
       ruleset:
