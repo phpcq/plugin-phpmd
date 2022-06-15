@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpcq/plugin-api.git",
-                "reference": "41a171cb56b3200881fe569c705dadd6de565bfd"
+                "reference": "891b29c1415436492548771c2c6f61aedb0b0655"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpcq/plugin-api/zipball/41a171cb56b3200881fe569c705dadd6de565bfd",
-                "reference": "41a171cb56b3200881fe569c705dadd6de565bfd",
+                "url": "https://api.github.com/repos/phpcq/plugin-api/zipball/891b29c1415436492548771c2c6f61aedb0b0655",
+                "reference": "891b29c1415436492548771c2c6f61aedb0b0655",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-25T09:14:32+00:00"
+            "time": "2022-03-01T09:07:09+00:00"
         }
     ],
     "packages-dev": [
@@ -82,12 +82,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpcq/runner-bootstrap.git",
-                "reference": "f0664b84c7324e2d41d653939ad3bf4f97aaf06f"
+                "reference": "aa201ff5719ddc2aad060b6a4b0689bacbca37c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpcq/runner-bootstrap/zipball/f0664b84c7324e2d41d653939ad3bf4f97aaf06f",
-                "reference": "f0664b84c7324e2d41d653939ad3bf4f97aaf06f",
+                "url": "https://api.github.com/repos/phpcq/runner-bootstrap/zipball/aa201ff5719ddc2aad060b6a4b0689bacbca37c6",
+                "reference": "aa201ff5719ddc2aad060b6a4b0689bacbca37c6",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-08T18:33:27+00:00"
+            "time": "2022-01-21T11:15:13+00:00"
         },
         {
             "name": "phpcq/schema",
@@ -209,5 +209,5 @@
         "ext-dom": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
