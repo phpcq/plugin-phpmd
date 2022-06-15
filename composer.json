@@ -1,8 +1,8 @@
 {
   "name": "phpcq/plugin-phpmd",
-  "type": "phpcq-plugin",
   "description": "phpmd plugin for phpcq.",
   "license": "MIT",
+  "type": "phpcq-plugin",
   "authors": [
     {
       "name": "Christian Schiffler",
