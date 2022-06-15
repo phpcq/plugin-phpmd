@@ -87,6 +87,7 @@ return new class implements DiagnosticsPluginInterface {
         yield $environment
             ->getTaskFactory()
             ->buildRunPhar('phpmd', $args)
+            ->withoutXDebug()
             ->withWorkingDirectory($environment->getProjectConfiguration()->getProjectRootPath())
             ->withOutputTransformer(
                 $this->createOutputTransformer($xmlfile, $environment->getProjectConfiguration()->getProjectRootPath())
