@@ -61,12 +61,16 @@ return new class implements DiagnosticsPluginInterface {
         ];
 
         if ($config->has('excluded')) {
+            $paths = [];
             foreach ($config->getStringList('excluded') as $path) {
                 if ('' === ($path = trim($path))) {
                     continue;
                 }
+                $paths[] = $path;
+            }
+            if ($paths) {
                 $args[] = '--exclude';
-                $args[] = $path;
+                $args[] = implode(',', $paths);
             }
         }
 
