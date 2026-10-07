@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ec08fd823b042d6ad65763bdf3e26be",
+    "content-hash": "f552d723dddbf601880fa95ffcc21634",
     "packages": [
         {
             "name": "phpcq/plugin-api",
-            "version": "dev-master",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpcq/plugin-api.git",
-                "reference": "891b29c1415436492548771c2c6f61aedb0b0655"
+                "reference": "5cdbbbcea41191533e8c2bee4a61a73d731df0bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpcq/plugin-api/zipball/891b29c1415436492548771c2c6f61aedb0b0655",
-                "reference": "891b29c1415436492548771c2c6f61aedb0b0655",
+                "url": "https://api.github.com/repos/phpcq/plugin-api/zipball/5cdbbbcea41191533e8c2bee4a61a73d731df0bb",
+                "reference": "5cdbbbcea41191533e8c2bee4a61a73d731df0bb",
                 "shasum": ""
             },
             "require": {
@@ -27,7 +27,6 @@
             "require-dev": {
                 "phpcq/runner-bootstrap": "^1.0@dev"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -60,7 +59,7 @@
             "description": "PHP code quality project plugin API interfaces.",
             "support": {
                 "issues": "https://github.com/phpcq/plugin-api/issues",
-                "source": "https://github.com/phpcq/plugin-api/tree/master"
+                "source": "https://github.com/phpcq/plugin-api/tree/1.0.3"
             },
             "funding": [
                 {
@@ -72,7 +71,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-01T09:07:09+00:00"
+            "time": "2024-03-21T08:35:42+00:00"
         }
     ],
     "packages-dev": [
@@ -140,7 +139,7 @@
         },
         {
             "name": "phpcq/schema",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpcq/schema.git",
@@ -152,7 +151,6 @@
                 "reference": "3c0ce7ec8e4399b4800b418efe9300210c253cbe",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -198,9 +196,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "phpcq/plugin-api": 20,
-        "phpcq/runner-bootstrap": 20,
-        "phpcq/schema": 20
+        "phpcq/runner-bootstrap": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -21,11 +21,11 @@
     "php": "^8.1",
     "ext-dom": "*",
     "ext-pcre": "*",
-    "phpcq/plugin-api": "^1.0@dev"
+    "phpcq/plugin-api": "^1.0"
   },
   "require-dev": {
     "phpcq/runner-bootstrap": "^1.0@dev",
-    "phpcq/schema": "^1.0@dev"
+    "phpcq/schema": "^1.0"
   },
   "autoload-dev": {
     "psr-4": {
