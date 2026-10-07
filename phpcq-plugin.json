@@ -5,7 +5,7 @@
   "api-version": "1.0.0",
   "requirements": {
     "php": {
-      "php": "^8.1",
+      "php": "^8.3",
       "ext-dom": "*"
     },
     "tool": {

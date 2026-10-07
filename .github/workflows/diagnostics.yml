@@ -16,22 +16,19 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - php: 8.1
+          - php: 8.3
             output: '-o github-action -o default'
             phpcq_install: 'update'
-          - php: 8.2
-            output: '-o default'
-            phpcq_install: 'update'
-          - php: 8.3
-            output: '-o default'
-            phpcq_install: 'update'
           - php: 8.4
+            output: '-o default'
+            phpcq_install: 'update'
+          - php: 8.5
             output: '-o default'
             phpcq_install: 'update'
 
     steps:
       - name: Pull source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: Setup PHP with PECL extension
         uses: shivammathur/setup-php@v2
@@ -39,18 +36,15 @@ jobs:
           php-version: ${{ matrix.php }}
 
       - name: Cache composer cache directory
-        uses: actions/cache@v1
+        uses: actions/cache@v6
         env:
           cache-name: composer-cache-dir-${{ matrix.php }}
         with:
           path: ~/.cache/composer
           key: ${{ runner.os }}-build-${{ env.cache-name }}
 
-      - name: Install composer dependencies
-        run: composer install
-
       - name: Cache vendor directory
-        uses: actions/cache@v1
+        uses: actions/cache@v6
         env:
           cache-name: vendor-${{ matrix.php }}
         with:
@@ -59,11 +53,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Install phpcq toolchain
-        run: ./vendor/bin/phpcq ${{ matrix.phpcq_install }} -v
-
       - name: Cache phpcq directory
-        uses: actions/cache@v1
+        uses: actions/cache@v6
         env:
           cache-name: phpcq-${{ matrix.php }}
         with:
@@ -72,11 +63,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
+      - name: Install composer dependencies
+        run: composer install
+
+      - name: Install phpcq toolchain
+        run: ./vendor/bin/phpcq ${{ matrix.phpcq_install }} -v
+
       - name: Run tests
         run: ./vendor/bin/phpcq run -v ${{ matrix.output }}
 
       - name: Upload build directory to artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         if: ${{ success() }} || ${{ failure() }}
         with:
           name: phpcq-builds-php-${{ matrix.php }}
