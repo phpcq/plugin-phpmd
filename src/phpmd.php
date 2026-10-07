@@ -28,7 +28,8 @@ return new class implements DiagnosticsPluginInterface {
         $configOptionsBuilder
             ->describeStringListOption(
                 'ruleset',
-                'List of rulesets (cleancode, codesize, controversial, design, naming, unusedcode).'
+                'List of rulesets (cleancode, codesize, controversial, design, naming, unusedcode) or paths to '
+                . 'ruleset files.'
             )
             ->isRequired()
             ->withDefaultValue(['naming', 'unusedcode']);
@@ -43,8 +44,15 @@ return new class implements DiagnosticsPluginInterface {
 
         $configOptionsBuilder
             ->describeStringListOption(
-                'excluded',
-                'List of excluded paths.'
+                'exclude',
+                'List of paths or patterns to exclude. Use asterisks to exclude by pattern, e.g. "*src/foo/*.php" '
+                . 'or "*src/foo/*".'
+            );
+
+        $configOptionsBuilder
+            ->describeStringOption(
+                'bootstrap',
+                'Path to a PHP script (relative to the project root) which is loaded before the analysis.'
             );
     }
 
@@ -52,26 +60,27 @@ return new class implements DiagnosticsPluginInterface {
         PluginConfigurationInterface $config,
         EnvironmentInterface $environment
     ): iterable {
-        $directories = $config->getStringList('directories');
+        $threads = $environment->getAvailableThreads();
+        $args    = ['analyze', '--no-progress', '--threads', (string) $threads];
 
-        $args = [
-            implode(',', $directories),
-            'xml',
-            implode(',', $config->getStringList('ruleset')),
-        ];
+        foreach ($config->getStringList('ruleset') as $ruleset) {
+            $args[] = '--ruleset';
+            $args[] = $ruleset;
+        }
 
-        if ($config->has('excluded')) {
-            $paths = [];
-            foreach ($config->getStringList('excluded') as $path) {
-                if ('' === ($path = trim($path))) {
+        if ($config->has('exclude')) {
+            foreach ($config->getStringList('exclude') as $pattern) {
+                if ('' === ($pattern = trim($pattern))) {
                     continue;
                 }
-                $paths[] = $path;
-            }
-            if ($paths) {
                 $args[] = '--exclude';
-                $args[] = implode(',', $paths);
+                $args[] = $pattern;
             }
+        }
+
+        if ($config->has('bootstrap') && '' !== ($bootstrap = trim($config->getString('bootstrap')))) {
+            $args[] = '--bootstrap';
+            $args[] = $bootstrap;
         }
 
         if ($config->has('custom_flags')) {
@@ -81,13 +90,19 @@ return new class implements DiagnosticsPluginInterface {
         }
 
         $xmlfile = $environment->getUniqueTempFile($this, 'xml');
-        $args[]  = '--report-file';
+        $args[]  = '--reportfile-xml';
         $args[]  = $xmlfile;
+
+        $args[] = '--';
+        foreach ($config->getStringList('directories') as $directory) {
+            $args[] = $directory;
+        }
 
         yield $environment
             ->getTaskFactory()
             ->buildRunPhar('phpmd', $args)
             ->withoutXDebug()
+            ->withCosts($threads)
             ->withWorkingDirectory($environment->getProjectConfiguration()->getProjectRootPath())
             ->withOutputTransformer(
                 $this->createOutputTransformer($xmlfile, $environment->getProjectConfiguration()->getProjectRootPath())
@@ -157,14 +172,20 @@ return new class implements DiagnosticsPluginInterface {
                         }
 
                         foreach ($rootNode->childNodes as $childNode) {
-                            if (!$childNode instanceof DOMElement || $childNode->nodeName !== 'file') {
+                            if (!$childNode instanceof DOMElement) {
                                 continue;
                             }
 
-                            $fileName = $childNode->getAttribute('name');
-                            if (strpos($fileName, $this->rootDir) === 0) {
-                                $fileName = substr($fileName, strlen($this->rootDir) + 1);
+                            if ($childNode->nodeName === 'error') {
+                                $this->addError($childNode);
+                                continue;
                             }
+
+                            if ($childNode->nodeName !== 'file') {
+                                continue;
+                            }
+
+                            $fileName = $this->relativeFileName($childNode->getAttribute('name'));
 
                             foreach ($childNode->childNodes as $violationNode) {
                                 if (!$violationNode instanceof DOMElement) {
@@ -237,6 +258,34 @@ return new class implements DiagnosticsPluginInterface {
                                 ? TaskReportInterface::STATUS_PASSED
                                 : TaskReportInterface::STATUS_FAILED
                         );
+                    }
+
+                    /**
+                     * Processing errors are reported as <error filename="..." msg="..."/>. The message may contain a
+                     * stack trace which is stripped (line breaks are normalized to spaces by the XML parser).
+                     */
+                    private function addError(DOMElement $errorNode): void
+                    {
+                        $message = (string) $this->getXmlAttribute($errorNode, 'msg', '');
+                        if (false !== ($parts = preg_split('/\s+#0 /', $message, 2))) {
+                            $message = $parts[0];
+                        }
+
+                        $builder = $this->report->addDiagnostic(TaskReportInterface::SEVERITY_FATAL, trim($message));
+                        $fileName = (string) $this->getXmlAttribute($errorNode, 'filename', '');
+                        if ('' !== $fileName) {
+                            $builder->forFile($this->relativeFileName($fileName))->end();
+                        }
+                        $builder->end();
+                    }
+
+                    private function relativeFileName(string $fileName): string
+                    {
+                        if (strpos($fileName, $this->rootDir) === 0) {
+                            return substr($fileName, strlen($this->rootDir) + 1);
+                        }
+
+                        return $fileName;
                     }
 
                     private function openReportFile(): ?DOMDocument
