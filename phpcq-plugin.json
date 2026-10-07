@@ -5,12 +5,12 @@
   "api-version": "1.0.0",
   "requirements": {
     "php": {
-      "php": "^7.3 || ^8.0",
+      "php": "^8.3",
       "ext-dom": "*"
     },
     "tool": {
       "phpmd": {
-        "constraints": "^2.6.1",
+        "constraints": "^3.0",
         "sources": [
           {
             "type": "github",

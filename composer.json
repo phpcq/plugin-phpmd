@@ -18,13 +18,14 @@
     }
   ],
   "require": {
-    "php": "^7.3 || ^8.0",
+    "php": "^8.3",
     "ext-dom": "*",
-    "phpcq/plugin-api": "^1.0@dev"
+    "ext-pcre": "*",
+    "phpcq/plugin-api": "^1.0"
   },
   "require-dev": {
     "phpcq/runner-bootstrap": "^1.0@dev",
-    "phpcq/schema": "^1.0@dev"
+    "phpcq/schema": "^1.0"
   },
   "autoload-dev": {
     "psr-4": {
